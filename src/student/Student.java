@@ -1,6 +1,5 @@
 package student;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 public class Student extends Person implements StudentInterface {
@@ -12,26 +11,22 @@ public class Student extends Person implements StudentInterface {
 	private int studentNumber;
 
 	private int totalSks;
-	
+
 	@Override
-	public void studentRegistration(
-			String firstName,
-			String lastName,
-			String address,
-			String birthDate,
-			String phoneNumber,
-			String email, 
-			String password) {
-		
+	public void studentRegistration(String firstName, String lastName, String address, String birthDate,
+			String phoneNumber, String email, String password) {
+
+		this.studentNumber = (int) (Math.random() * 10000 + 1);
+
 		this.email = email;
 		this.password = password;
-		
+
 		super.setFirstName(firstName);
 		super.setLastName(lastName);
 		super.setAddress(address);
 		super.setBirthDate(birthDate);
 		super.setPhoneNumber(phoneNumber);
-		
+
 		System.out.println("Registration Successful");
 		System.out.println("=======================");
 		System.out.println("Person Data :");
@@ -42,7 +37,7 @@ public class Student extends Person implements StudentInterface {
 		System.out.println("=======================");
 		System.out.println("Student Data");
 		System.out.println("Email : " + this.email);
-		System.out.println("NIM : " + "10022");
+		System.out.println("NIM : " + this.studentNumber);
 	}
 
 	public String getEmail() {
@@ -63,23 +58,22 @@ public class Student extends Person implements StudentInterface {
 
 	@Override
 	public void learningPlan(ArrayList<Course> course) {
-		
+
 		for (Course c : course) {
 			int sks = c.getSks();
 			this.totalSks += sks;
 		}
-		
-		if (this.totalSks >= 20) {
+
+		if (this.totalSks >= 144) {
 			super.setLastName(super.getLastName() + " S.Kom");
 		}
-		
+
 		System.out.println("Learning Plan Info");
 		System.out.println("============================");
 		System.out.println("Email : " + this.email);
-		System.out.println("NIM : " + "10022");
+		System.out.println("NIM : " + this.studentNumber);
 		System.out.println("Full Name : " + super.getFullName());
 		System.out.println("Total SKS : " + this.totalSks);
 	}
-	
 
 }
