@@ -65,7 +65,7 @@ public class Student extends Person implements StudentInterface {
 		}
 
 		if (this.totalSks >= 144) {
-			super.setLastName(super.getLastName() + " S.Kom");
+			super.setLastName(super.getLastName() + " S.Ss");
 		}
 
 		System.out.println("Learning Plan Info");
