@@ -1,6 +1,8 @@
 package restaurant;
 
-public class MenuItems {
+import java.util.ArrayList;
+
+public class MenuItems implements PrintReceipt {
 
     private int id;
 
@@ -50,5 +52,25 @@ public class MenuItems {
 
     public String getMenuCode() {
         return menuCode;
+    }
+
+    @Override
+    public void paymentReceipt(int finalTotalPrice, ArrayList<String> itemDetails) {
+        System.out.println("___________________________________________________________________");
+        System.out.println("Total pembayaran sebesar ");
+        int ppn = (finalTotalPrice / 100) * 10;
+        System.out.println("Total Order : Rp." + finalTotalPrice);
+        System.out.println("PPN (10%) : Rp." + ppn);
+        System.out.println("Total Bayar Rp." + (finalTotalPrice + ppn));
+        System.out.println("--------------Item Details--------------");
+        for (String item : itemDetails) {
+            System.out.println(item);
+        }
+        System.out.println("Terimakasih atas kunjungannya.");
+    }
+
+    @Override
+    public String toString() {
+        return (this.getMenuName());
     }
 }

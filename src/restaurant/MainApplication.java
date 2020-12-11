@@ -8,14 +8,16 @@ public class MainApplication {
     public static void main(String[] args) {
 
         //Menu items
+        MenuItems masterMenu = new MenuItems();
         MenuItems nasi = new MenuItems(1, "food", "Nasi", 3000);
-        MenuItems ayamGoreng = new MenuItems(2, "food", "Ayam Goreng", 5000);
-        MenuItems ayamBakar = new MenuItems(3, "food", "Ayam Bakar", 7000);
+        MenuItems ayamGoreng = new MenuItems(2, "food", "Ayam Goreng", 8000);
+        MenuItems ayamBakar = new MenuItems(3, "food", "Ayam Bakar", 10000);
         MenuItems airPutih = new MenuItems(4, "drink", "Air Putih", 1000);
+        MenuItems esTeh = new MenuItems(5, "drink", "Es Teh", 2000);
 
         //All menu array
         ArrayList<MenuItems> allItems = new ArrayList<>();
-        allItems.addAll(Arrays.asList(nasi, ayamGoreng, ayamBakar, airPutih));
+        allItems.addAll(Arrays.asList(nasi, ayamGoreng, ayamBakar, airPutih, esTeh));
 
         //Packet items
         //All Packets
@@ -41,8 +43,8 @@ public class MainApplication {
         for (String index = "Y"; index.equals("Y") || index.equals("y"); ) {
 
             System.out.println("Select main menu please ...");
-            System.out.println("All Menu : 1");
-            System.out.println("Packet Menu : 2");
+            System.out.println("Menu Satuan : 1");
+            System.out.println("Menu Paket : 2");
 
             System.out.print("Select menu : ");
             int inNomor = scan.nextInt();
@@ -88,7 +90,7 @@ public class MainApplication {
                             totalPricePacket += allPacket.get(i).get(j).getPrice();
                             System.out.print(menuName + ". ");
                         }
-                        System.out.println(totalPricePacket);
+                        System.out.println(totalPricePacket - 2000);
                         totalPricePacket = 0;
                         System.out.println();
                     }
@@ -104,7 +106,7 @@ public class MainApplication {
                         ArrayList<MenuItems> selectedPacket = allPacket.get(menuNomor - 1);
 
                         for (MenuItems menu : selectedPacket) {
-                            itemDetails.add(menu.getMenuName() + " " + menu.getPrice());
+                            itemDetails.add("(Paket " + menuNomor + ") " + menu.getMenuName() + " " + menu.getPrice() );
                             countPricePacket += menu.getPrice();
                         }
 
@@ -121,15 +123,8 @@ public class MainApplication {
             System.out.println("Apakah anda mau melanjutkan pembelian? Y/N");
             index = scan.next();
         }
-        System.out.println("___________________________________________________________________");
-        System.out.println("Total pembayaran sebesar ");
-        int ppn = (finalTotalPrice / 100) * 10;
-        System.out.println("PPN (10%) : " + ppn);
-        System.out.println("Total Rp." + (finalTotalPrice + ppn));
-        System.out.println("--------------Item Details--------------");
-        for (String item : itemDetails) {
-            System.out.println(item);
-        }
-        System.out.println("Terimakasih atas kunjungannya.");
+       masterMenu.paymentReceipt(finalTotalPrice, itemDetails);
     }
+
+
 }
